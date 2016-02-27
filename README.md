@@ -18,7 +18,7 @@ $db_name = "database";
 * Init database with `init/tables.sql`
 ```ssh
 $ mysql -h hostname -u username -ppassword
-use database;
+mysql> use database;
 mysql> source tables.sql;
 ```
 
