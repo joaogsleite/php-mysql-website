@@ -1,0 +1,114 @@
+
+DROP TRIGGER IF EXISTS seqP;
+DROP TRIGGER IF EXISTS seqR;
+DROP TRIGGER IF EXISTS seqT;
+DROP TRIGGER IF EXISTS seqC;
+DROP TRIGGER IF EXISTS seqV;
+
+DROP TRIGGER IF EXISTS seqP2;
+DROP TRIGGER IF EXISTS seqR2;
+DROP TRIGGER IF EXISTS seqT2;
+DROP TRIGGER IF EXISTS seqC2;
+DROP TRIGGER IF EXISTS seqV2;
+
+DELIMITER //
+
+CREATE TRIGGER seqP BEFORE INSERT ON pagina
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid)
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+
+CREATE TRIGGER seqR BEFORE INSERT ON registo
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid) 
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+
+CREATE TRIGGER seqT BEFORE INSERT ON tipo_registo
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid) 
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+
+CREATE TRIGGER seqC BEFORE INSERT ON campo
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid) 
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+
+CREATE TRIGGER seqV BEFORE INSERT ON valor
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid) 
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+
+CREATE TRIGGER seqP2 BEFORE UPDATE ON pagina
+FOR EACH ROW
+BEGIN
+UPDATE sequencia SET moment=NOW() WHERE idseq=OLD.idseq;
+SET NEW.idseq=OLD.idseq;
+END;//
+
+CREATE TRIGGER seqR2 BEFORE UPDATE ON registo
+FOR EACH ROW
+BEGIN
+UPDATE sequencia SET moment=NOW() WHERE idseq=OLD.idseq;
+SET NEW.idseq=OLD.idseq;
+END;//
+
+CREATE TRIGGER seqT2 BEFORE UPDATE ON tipo_registo
+FOR EACH ROW
+BEGIN
+UPDATE sequencia SET moment=NOW() WHERE idseq=OLD.idseq;
+SET NEW.idseq=OLD.idseq;
+END;//
+
+CREATE TRIGGER seqC2 BEFORE UPDATE ON campo
+FOR EACH ROW
+BEGIN
+UPDATE sequencia SET moment=NOW() WHERE idseq=OLD.idseq;
+SET NEW.idseq=OLD.idseq;
+END;//
+
+CREATE TRIGGER seqV2 BEFORE UPDATE ON valor
+FOR EACH ROW
+BEGIN
+UPDATE sequencia SET moment=NOW() WHERE idseq=OLD.idseq;
+SET NEW.idseq=OLD.idseq;
+END;//
+
+DELIMITER ;
+
+
+
+# caso especial para a RP
+# ===================================
+DROP TRIGGER IF EXISTS seqRP;
+DROP TRIGGER IF EXISTS seqRP2;
+DELIMITER //
+CREATE TRIGGER seqRP BEFORE INSERT ON reg_pag
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid) 
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+CREATE TRIGGER seqRP2 BEFORE UPDATE ON reg_pag
+FOR EACH ROW
+BEGIN
+INSERT INTO sequencia (moment,userid) 
+VALUES (NOW(),NEW.userid);
+SET NEW.idseq=LAST_INSERT_ID();
+END;//
+DELIMITER ;
