@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bloco de Notas</title>
-    <meta name="description" content="">
+    <meta name="Description" content="">
     <meta name="author" content="77896,77907,77969">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
